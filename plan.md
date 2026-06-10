@@ -37,11 +37,47 @@ Parse inputs → Calculate subtotal → Apply discount → Calculate VAT → Pri
 
 
 ## Immediate Next Steps
-1. Create IO.java — wrapper around Scanner for input prompts and output
-2. Start CafeApp.java with:
-   - Menu data (item names and prices)
-   - main() method as a coordinator
-   - Helper methods for each responsibility
-3. Build incrementally — get one part working before adding the next
 
-Hint from the requirements: "Think about the receipt from the bottom up: what values must exist before the final total can be printed?"
+### ✅ Phase 1 & 2 Complete
+The core Café Order System is fully implemented and ready to use.
+
+### How to Test the Application Locally
+
+**Option A: Using Maven (system-wide)**
+```powershell
+mvn -DskipTests package
+java -cp target\classes se.lexicon.Main
+```
+
+**Option B: Using Maven Wrapper (no installation required)**
+```powershell
+.\mvnw.cmd -DskipTests package
+java -cp target\classes se.lexicon.Main
+```
+
+**Run Unit Tests**
+```powershell
+.\mvnw.cmd test
+# or
+mvn test
+```
+
+### Things to Try
+
+1. **Test the core flow** — Run the app and test with the sample inputs from Java1_Workshop_Cafe.md:
+   - Loyalty member, 2 lattes
+   - Non-member, 6 sandwiches
+   - Single espresso, no membership
+
+2. **Verify test output** — Run `mvn test` to confirm all unit tests pass (6 tests should pass).
+
+3. **Commit your progress** — Once verified, commit the complete core implementation to git.
+
+### Optional Challenges
+
+Once the core app is working and tested, tackle the optional challenges:
+- **Challenge 1** – Serve Multiple Customers (add outer loop for multiple orders)
+- **Challenge 2** – Input Validation & Error Handling (enhanced error messages)
+- **Challenge 3** – Create an Order Class (refactor into OOP)
+- **Challenge 4** – Multiple Items per Order (ArrayList of line items)
+- **Challenge 5** – GUI (Java Swing or JavaFX)

@@ -15,7 +15,8 @@ mvn test
 java -cp target\classes se.lexicon.Main
 ```
 
-### Using the project wrapper (recommended)
+---------------------------------------
+## Using the project wrapper (recommended):
 If you want to run Maven without installing it globally, use the provided wrapper scripts.
 
 On Windows (PowerShell or cmd):
@@ -28,8 +29,8 @@ On macOS / Linux:
 ./mvnw test
 ```
 
----------------------------------------
-## How the wrapper scripts work:
+
+### How the wrapper scripts work:
 
 - First they check whether mvn is already on PATH; if yes they just call the system mvn with the same arguments.
 - If mvn is not found, they download the Maven binary distribution (currently pinned to 3.9.16 from the Apache archive) into .mvn/wrapper/, extract it and run the mvn binary from there.
