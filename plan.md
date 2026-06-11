@@ -1,4 +1,4 @@
-## Starting Approach
+# Project Approach
 
 ## Phase 1: Foundation (IO Helper)
 Create a simple IO.java class first. This handles console input/output so your main logic stays clean:
@@ -34,50 +34,80 @@ Customer Name → Item Choice → Quantity → Membership
 ↓
 Parse inputs → Calculate subtotal → Apply discount → Calculate VAT → Print
 
-
+-------------------------
 
 ## Immediate Next Steps
 
-### ✅ Phase 1 & 2 Complete
-The core Café Order System is fully implemented and ready to use.
+### ✅ Challenge 1 Complete
+**Serve Multiple Customers** has been implemented!
 
-### How to Test the Application Locally
+The application now supports a cashier workflow that serves multiple customers in sequence, with end-of-day reporting.
 
-**Option A: Using Maven (system-wide)**
-```powershell
-mvn -DskipTests package
-java -cp target\classes se.lexicon.Main
-```
+### How to Test Challenge 1 Locally
 
-**Option B: Using Maven Wrapper (no installation required)**
+**Build the project:**
 ```powershell
 .\mvnw.cmd -DskipTests package
+```
+
+**Run the application:**
+```powershell
 java -cp target\classes se.lexicon.Main
 ```
 
-**Run Unit Tests**
-```powershell
-.\mvnw.cmd test
-# or
-mvn test
+**Test Workflow:**
+1. Enter a customer name (e.g., "Mehrdad")
+2. Select an item and quantity, choose membership status
+3. Receipt is printed
+4. Asked for next customer name
+5. Enter another customer or type "done" to close
+6. End-of-day report prints showing customers served and total revenue
+
+**Example Test Session:**
+```text
+Next customer name (or 'done' to close): Mehrdad
+Hi Mehrdad! Here is our menu:
+[menu displays]
+Enter item number (1-5): 3
+How many? 2
+Loyalty member? (yes/no): yes
+[receipt prints]
+
+Next customer name (or 'done' to close): Elnaz
+Hi Elnaz! Here is our menu:
+[menu displays]
+Enter item number (1-5): 5
+How many? 6
+Loyalty member? (yes/no): no
+[receipt prints]
+
+Next customer name (or 'done' to close): done
+
+==============================
+      END OF DAY REPORT
+==============================
+Customers served : 2
+Total revenue    : 409.64 SEK
+==============================
 ```
 
-### Things to Try
+### Run Unit Tests
+```powershell
+.\mvnw.cmd test
+```
+(All 6 tests should still pass — core calculation logic unchanged)
 
-1. **Test the core flow** — Run the app and test with the sample inputs from Java1_Workshop_Cafe.md:
-   - Loyalty member, 2 lattes
-   - Non-member, 6 sandwiches
-   - Single espresso, no membership
+### Commit Your Progress
+```bash
+git add .
+git commit -m "Complete Challenge 1: Serve Multiple Customers with end-of-day report"
+git push
+```
 
-2. **Verify test output** — Run `mvn test` to confirm all unit tests pass (6 tests should pass).
+### Ready for the Next Challenge?
 
-3. **Commit your progress** — Once verified, commit the complete core implementation to git.
-
-### Optional Challenges
-
-Once the core app is working and tested, tackle the optional challenges:
-- **Challenge 1** – Serve Multiple Customers (add outer loop for multiple orders)
-- **Challenge 2** – Input Validation & Error Handling (enhanced error messages)
-- **Challenge 3** – Create an Order Class (refactor into OOP)
-- **Challenge 4** – Multiple Items per Order (ArrayList of line items)
+Once Challenge 1 is verified and committed, you can tackle:
+- **Challenge 2** – Input Validation & Error Handling (advanced error messages for invalid inputs)
+- **Challenge 3** – Create an Order Class (move to object-oriented design)
+- **Challenge 4** – Multiple Items per Order (ArrayList of line items per customer)
 - **Challenge 5** – GUI (Java Swing or JavaFX)

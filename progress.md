@@ -1,4 +1,4 @@
-# ✅ Project Status — CORE APPLICATION COMPLETE
+# ✅ Project Status — CHALLENGE 1 COMPLETE
 
 ## 1. IO.java — Input/Output Wrapper ✓
    - println() — print with newline
@@ -19,7 +19,7 @@
    - VAT_RATE = 12%
 
    ### Customer Interaction (fully implemented):
-   - greetCustomer() ✓
+   - getNextCustomerName() ✓ (with "done" command support)
    - displayMenu() ✓
    - getItemChoice() ✓ (with input validation)
    - getQuantity() ✓ (with validation)
@@ -33,6 +33,7 @@
 
    ### Output (fully implemented):
    - printReceipt(...) ✓ — formatted receipt
+   - printEndOfDayReport(...) ✓ **[NEW - Challenge 1]**
    - printSeparator() ✓
 
 ## 3. Main.java — Entry Point ✓
@@ -61,20 +62,45 @@
    - plan.md with architecture overview ✓
 
 -------------------------------------------------------
-# 🎯 Current Capabilities
-The application is fully functional and ready to:
-- Accept customer input (name, item choice, quantity, membership status)
-- Calculate pricing with correct discount logic and VAT
-- Display formatted receipts matching the workshop requirements
-- Pass all unit tests for calculation logic
-- Build and run from command line with Maven wrapper
+
+# 🎯 Challenge 1 Implementation Summary
+
+**Challenge 1 – Serve Multiple Customers** is now complete!
+
+### What Changed:
+- **main() method**: Now wraps the order-processing flow in a `while(true)` loop
+- **getNextCustomerName()**: New method replaces `greetCustomer()`
+  - Prompts: "Next customer name (or 'done' to close): "
+  - Allows cashier to type "done" (case-insensitive) to exit
+- **Revenue Tracking**: 
+  - `customersServed` counter — increments after each order
+  - `totalRevenue` accumulator — sums the `total` (including VAT) from each order
+- **printEndOfDayReport()**: New method displays:
+  - Number of customers served
+  - Total revenue in SEK (with 2 decimal places)
+  - Formatted with separators matching receipt style
+
+### How It Works:
+1. Loop starts; asks for a customer name
+2. If "done" is entered → exit loop and print end-of-day report
+3. Otherwise → process the full order (menu, item choice, quantity, membership, receipt)
+4. Increment customer count and add to total revenue
+5. Loop back for next customer
+
+### Expected Output (End of Day):
+```text
+==============================
+      END OF DAY REPORT
+==============================
+Customers served : 3
+Total revenue    : 437.28 SEK
+==============================
+```
 
 -------------------------------------------------------
-
 # 🚀 Recommended Next Steps (Optional Challenges)
 
-### Optional Challenges:
-- **Challenge 1** – Serve Multiple Customers (add outer loop for multiple orders)
+Once Challenge 1 is tested and committed:
 - **Challenge 2** – Input Validation & Error Handling (enhanced error messages)
 - **Challenge 3** – Create an Order Class (refactor into OOP)
 - **Challenge 4** – Multiple Items per Order (ArrayList of line items)

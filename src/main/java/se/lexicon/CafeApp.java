@@ -42,25 +42,39 @@ public class CafeApp {
 
 
     public static void main(String[] args) {
-        // Simple single-customer flow
-        String customer = greetCustomer();
-        IO.println("Hi " + customer + "! Here is our menu:\n");
-        displayMenu();
+        // Challenge 1: Serve multiple customers in a loop
+        int customersServed = 0;
+        double totalRevenue = 0.0;
 
-        int itemIndex = getItemChoice() - 1; // convert to 0-based
-        int quantity = getQuantity();
-        boolean isMember = askMembership();
+        while (true) {
+            String customer = getNextCustomerName();
+            if (customer.equalsIgnoreCase("done")) {
+                break;
+            }
 
-        String itemName = MENU_ITEMS[itemIndex];
-        double unitPrice = MENU_PRICES[itemIndex];
+            IO.println("Hi " + customer + "! Here is our menu:\n");
+            displayMenu();
 
-        double subtotal = calculateSubtotal(unitPrice, quantity);
-        double discount = calculateDiscount(subtotal, isMember);
-        double vat = calculateVAT(subtotal, discount);
-        double total = calculateTotal(subtotal, discount, vat);
+            int itemIndex = getItemChoice() - 1; // convert to 0-based
+            int quantity = getQuantity();
+            boolean isMember = askMembership();
 
-        printReceipt(customer, itemName, quantity, unitPrice, subtotal, discount, vat, total);
+            String itemName = MENU_ITEMS[itemIndex];
+            double unitPrice = MENU_PRICES[itemIndex];
 
+            double subtotal = calculateSubtotal(unitPrice, quantity);
+            double discount = calculateDiscount(subtotal, isMember);
+            double vat = calculateVAT(subtotal, discount);
+            double total = calculateTotal(subtotal, discount, vat);
+
+            printReceipt(customer, itemName, quantity, unitPrice, subtotal, discount, vat, total);
+
+            customersServed++;
+            totalRevenue += total;
+            IO.println(""); // blank line between customers
+        }
+
+        printEndOfDayReport(customersServed, totalRevenue);
         IO.close();
     }
 
@@ -68,10 +82,10 @@ public class CafeApp {
     // ===== CUSTOMER INTERACTION =====
 
     /**
-     * Greet the customer and get their name.
+     * Get the next customer's name (or 'done' to close).
      */
-    private static String greetCustomer() {
-        String name = IO.readString("Welcome! What is your name? ");
+    private static String getNextCustomerName() {
+        String name = IO.readString("Next customer name (or 'done' to close): ");
         if (name == null || name.isEmpty()) {
             return "Customer";
         }
@@ -206,6 +220,18 @@ public class CafeApp {
         printSeparator();
         IO.println("   Thank you, " + customerName + "!");
         IO.println("   See you next time.");
+        printSeparator();
+    }
+
+    /**
+     * Print the end-of-day summary report.
+     */
+    private static void printEndOfDayReport(int customersServed, double totalRevenue) {
+        printSeparator();
+        IO.println("      END OF DAY REPORT");
+        printSeparator();
+        IO.println(String.format("Customers served : %d", customersServed));
+        IO.println(String.format("Total revenue    : %.2f SEK", totalRevenue));
         printSeparator();
     }
 
